@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { SingUp } from "./Api/user";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
+import Onboarding from "./pages/Onboarding";
 
 function App() {
   useEffect(() => {
@@ -11,8 +12,9 @@ function App() {
 
   return (
     <div className="App">
+      <Onboarding />
       {/* <SignUp /> */}
-      <LogIn />
+      {/* <LogIn /> */}
     </div>
   );
 }

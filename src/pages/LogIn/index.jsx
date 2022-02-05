@@ -17,32 +17,7 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   const url = "http://localhost:8080/api/infra/user/login";
-
-    //   const { data: res } = await axios.post(url, data);
-    //   console.log(res);
-    //   localStorage.setItem("token", res.token);
-    //   localStorage.setItem("userId", res.user.id);
-
-    //   if (res.user.status === "FTL") {
-    //     router.push("/new-password");
-    //   } else {
-    //     router.push("/main");
-    //   }
-
-    //   console.log(res.message);
-    // } catch (err) {
-    //   if (err) {
-    //     if (
-    //       error.response &&
-    //       error.response.status >= 400 &&
-    //       error.response.status <= 500
-    //     ) {
-    //       setError(err.response.data.message);
-    //     }
-    //   }
-    // }
+  
   };
 
   return (
@@ -65,7 +40,8 @@ const SignUp = () => {
             sm:px-6
             lg:flex-none lg:px-20
             xl:px-24
-          ">
+          "
+        >
           <div class="w-full max-w-xl mx-auto lg:w-96">
             <div>
               <h2 class="mt-6 text-3xl font-extrabold text-neutral-600">
@@ -79,11 +55,13 @@ const SignUp = () => {
                   action="#"
                   method="POST"
                   class="space-y-6"
-                  onSubmit={handleSubmit}>
+                  onSubmit={handleSubmit}
+                >
                   <div>
                     <label
                       for="email"
-                      class="block text-sm font-medium text-neutral-600">
+                      class="block text-sm font-medium text-neutral-600"
+                    >
                       {" "}
                       Email address{" "}
                     </label>
@@ -125,7 +103,8 @@ const SignUp = () => {
                   <div class="space-y-1">
                     <label
                       for="password"
-                      class="block text-sm font-medium text-neutral-600">
+                      class="block text-sm font-medium text-neutral-600"
+                    >
                       {" "}
                       Password{" "}
                     </label>
@@ -182,7 +161,8 @@ const SignUp = () => {
                       />
                       <label
                         for="remember-me"
-                        class="block ml-2 text-sm text-neutral-600">
+                        class="block ml-2 text-sm text-neutral-600"
+                      >
                         {" "}
                         Remember me{" "}
                       </label>
@@ -190,7 +170,8 @@ const SignUp = () => {
                     <div class="text-sm">
                       <a
                         href="#"
-                        class="font-medium text-blue-600 hover:text-blue-500">
+                        class="font-medium text-blue-600 hover:text-blue-500"
+                      >
                         {" "}
                         Forgot your password?{" "}
                       </a>
@@ -220,7 +201,8 @@ const SignUp = () => {
                         focus:ring-2
                         focus:ring-offset-2
                         focus:ring-blue-500
-                      ">
+                      "
+                    >
                       {" "}
                       Log In{" "}
                     </button>
@@ -260,7 +242,8 @@ const SignUp = () => {
                       focus:ring-2
                       focus:ring-offset-2
                       focus:ring-gray-500
-                    ">
+                    "
+                  >
                     <div class="flex items-center justify-center">
                       <span class="ml-4"> Log in with Google</span>
                     </div>

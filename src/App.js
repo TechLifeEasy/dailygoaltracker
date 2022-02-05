@@ -22,7 +22,7 @@ function App() {
       <Task />
       <Tabs />
       <Navbar />
-      {/* <Onboarding /> */}
+      <Onboarding />
       <SignUp />
       <LogIn />
       <Footer />

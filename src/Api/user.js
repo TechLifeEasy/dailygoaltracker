@@ -8,8 +8,10 @@ const SingUp = async ( email, password, displayName ) => {
         .then((userCredential) => {
             userCredential.user.updateProfile({
                 displayName: displayName
+            }).then(()=>{
+                console.log('done')
+                window.location.href='/'
             })
-            console.log('done')
         })
         .catch(e => console.log(e))
         .finally()
@@ -22,9 +24,12 @@ const Logout = () => {
     auth.signOut()
         .then(() => {
             console.log('log out..')
+            window.location.href='/'
         })
         .catch((e) => console.log(e));
 }
+
+
 
 
 const SingIn = ( email, password ) => {
@@ -32,25 +37,32 @@ const SingIn = ( email, password ) => {
     auth.signInWithEmailAndPassword(email, password)
         .then((data) => {
             console.log('Sing In')
+            window.location.href='/';
         })
         .catch((e) => {
             console.log(e);
+            // window.location.href='/';
         }).finally()
 
 }
 
-const UserAuthState = (stateUpdate) => {
+const UserAuthState = async () => {
 
 
-    const user = auth.currentUser;
-
-    auth.onAuthStateChanged((user) => {
+    // const user = auth.currentUser;
+// 
+    await auth.onAuthStateChanged((user) => {
         if (user) {
-            stateUpdate({ user_id: user.uid, displayName: user.displayName });
-            
+          console.log('user In')
+         console.log(window.location.href.includes('/signup'))
+         if(window.location.href.includes('/signup') || window.location.href.includes('/login')){
+               window.location.href='/'
+         }
         } else {
-            stateUpdate(null);
-            
+            if(!window.location.href.includes('/signup')){
+              
+                window.location.href='/signup'
+          }
         }
     })
 

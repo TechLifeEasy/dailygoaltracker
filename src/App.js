@@ -6,6 +6,7 @@ import LogIn from "./pages/LogIn";
 import Onboarding from "./pages/Onboarding";
 import Task from "./pages/Home";
 import pageNotFound from "./pageNotFound";
+import Tabs from "./components/Tabs";
 
 function App() {
   useEffect(() => {
@@ -16,7 +17,8 @@ function App() {
     <div className="App">
       {/* <pageNotFound /> */}
       {/* <Navbar /> */}
-      <Task />
+      {/* <Task /> */}
+      <Tabs />
       {/* <Onboarding /> */}
       {/* <SignUp /> */}
       {/* <LogIn /> */}

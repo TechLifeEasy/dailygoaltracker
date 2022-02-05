@@ -4,6 +4,8 @@ import { SingUp } from "./Api/user";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Onboarding from "./pages/Onboarding";
+import Task from "./pages/Home";
+// import Navbar from "./pages/helper/Navbar";
 
 function App() {
   useEffect(() => {
@@ -12,7 +14,9 @@ function App() {
 
   return (
     <div className="App">
-      <Onboarding />
+      {/* <Navbar /> */}
+      <Task />
+      {/* <Onboarding /> */}
       {/* <SignUp /> */}
       {/* <LogIn /> */}
     </div>

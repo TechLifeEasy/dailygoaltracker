@@ -24,13 +24,10 @@ const Logout = () => {
             console.log('log out..')
         })
         .catch((e) => console.log(e));
-
-
-
 }
 
 
-const SingIn = ({ email, password }) => {
+const SingIn = ( email, password ) => {
 
     auth.signInWithEmailAndPassword(email, password)
         .then((data) => {
@@ -42,7 +39,7 @@ const SingIn = ({ email, password }) => {
 
 }
 
-const UserAuthState = (stateUpdate, setRoute) => {
+const UserAuthState = (stateUpdate) => {
 
 
     const user = auth.currentUser;
@@ -50,10 +47,10 @@ const UserAuthState = (stateUpdate, setRoute) => {
     auth.onAuthStateChanged((user) => {
         if (user) {
             stateUpdate({ user_id: user.uid, displayName: user.displayName });
-            setRoute("ShowNotes")
+            
         } else {
             stateUpdate(null);
-            setRoute("SingUp")
+            
         }
     })
 

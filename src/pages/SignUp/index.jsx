@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import image from "../../assets/signup.svg";
+import { SingUp } from "../../Api/user";
 
 const SignUp = () => {
   const [data, setData] = useState({
@@ -10,7 +11,7 @@ const SignUp = () => {
 
   //   const router = useRouter();
 
-  //   const [error, setError] = useState("");
+  const [isLoading, setIsLoadding] = useState(false);
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -18,32 +19,12 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   const url = "http://localhost:8080/api/infra/user/login";
-
-    //   const { data: res } = await axios.post(url, data);
-    //   console.log(res);
-    //   localStorage.setItem("token", res.token);
-    //   localStorage.setItem("userId", res.user.id);
-
-    //   if (res.user.status === "FTL") {
-    //     router.push("/new-password");
-    //   } else {
-    //     router.push("/main");
-    //   }
-
-    //   console.log(res.message);
-    // } catch (err) {
-    //   if (err) {
-    //     if (
-    //       error.response &&
-    //       error.response.status >= 400 &&
-    //       error.response.status <= 500
-    //     ) {
-    //       setError(err.response.data.message);
-    //     }
-    //   }
-    // }
+    setIsLoadding(true);
+    SingUp(data.email, data.name, data.password)
+      .then(() => {})
+      .finally(() => {
+        setIsLoadding(false);
+      });
   };
 
   return (
@@ -59,183 +40,147 @@ const SignUp = () => {
             sm:px-6
             lg:flex-none lg:px-20
             xl:px-24
-          ">
+          "
+        >
           <div class="w-full max-w-xl mx-auto lg:w-96">
             <div>
               <h2 class="mt-6 text-3xl font-extrabold text-neutral-600">
-                {" "}
-                Sign Up.{" "}
+                Sign Up.
               </h2>
             </div>
             <div class="mt-8">
               <div class="mt-6">
-                <form
-                  action="#"
-                  method="POST"
-                  class="space-y-6"
-                  onSubmit={handleSubmit}>
-                  <div>
-                    <label
-                      for="name"
-                      class="block text-sm font-medium text-neutral-600">
-                      {" "}
-                      Full Name{" "}
-                    </label>
-                    <div class="mt-1">
-                      <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        autocomplete="name"
-                        required=""
-                        placeholder="Your Name"
-                        value={data.value}
-                        onChange={handleChange}
-                        class="
-                          block
-                          w-full
-                          px-5
-                          py-3
-                          text-base
-                          placeholder-gray-300
-                          transition
-                          duration-500
-                          ease-in-out
-                          transform
-                          border border-transparent
-                          rounded-lg
-                          text-neutral-600
-                          bg-gray-50
-                          focus:outline-none
-                          focus:border-transparent
-                          focus:ring-2
-                          focus:ring-white
-                          focus:ring-offset-2
-                          focus:ring-offset-gray-300
-                        "
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label
-                      for="email"
-                      class="block text-sm font-medium text-neutral-600">
-                      {" "}
-                      Email address{" "}
-                    </label>
-                    <div class="mt-1">
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        autocomplete="email"
-                        required=""
-                        placeholder="Your Email"
-                        onChange={handleChange}
-                        value={data.value}
-                        class="
-                          block
-                          w-full
-                          px-5
-                          py-3
-                          text-base
-                          placeholder-gray-300
-                          transition
-                          duration-500
-                          ease-in-out
-                          transform
-                          border border-transparent
-                          rounded-lg
-                          text-neutral-600
-                          bg-gray-50
-                          focus:outline-none
-                          focus:border-transparent
-                          focus:ring-2
-                          focus:ring-white
-                          focus:ring-offset-2
-                          focus:ring-offset-gray-300
-                        "
-                      />
-                    </div>
-                  </div>
-                  <div class="space-y-1">
-                    <label
-                      for="password"
-                      class="block text-sm font-medium text-neutral-600">
-                      {" "}
-                      Password{" "}
-                    </label>
-                    <div class="mt-1">
-                      <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        autocomplete="current-password"
-                        required=""
-                        placeholder="Your Password"
-                        onChange={handleChange}
-                        value={data.value}
-                        class="
-                          block
-                          w-full
-                          px-5
-                          py-3
-                          text-base
-                          placeholder-gray-300
-                          transition
-                          duration-500
-                          ease-in-out
-                          transform
-                          border border-transparent
-                          rounded-lg
-                          text-neutral-600
-                          bg-gray-50
-                          focus:outline-none
-                          focus:border-transparent
-                          focus:ring-2
-                          focus:ring-white
-                          focus:ring-offset-2
-                          focus:ring-offset-gray-300
-                        "
-                      />
-                    </div>
-                  </div>
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                      <input
-                        id="remember-me"
-                        name="remember-me"
-                        type="checkbox"
-                        placeholder="Your password"
-                        class="
-                          w-4
-                          h-4
-                          text-blue-600
-                          border-gray-200
-                          rounded
-                          focus:ring-blue-500
-                        "
-                      />
-                      <label
-                        for="remember-me"
-                        class="block ml-2 text-sm text-neutral-600">
-                        {" "}
-                        Remember me{" "}
-                      </label>
-                    </div>
-                    <div class="text-sm">
-                      <a
-                        href="#"
-                        class="font-medium text-blue-600 hover:text-blue-500">
-                        {" "}
-                        Forgot your password?{" "}
-                      </a>
-                    </div>
-                  </div>
-                  <div>
-                    <button
-                      type="submit"
+                <div>
+                  <label
+                    for="name"
+                    class="block text-sm font-medium text-neutral-600"
+                  >
+                    Full Name
+                  </label>
+                  <div class="mt-1">
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      autocomplete="name"
+                      required=""
+                      placeholder="Your Name"
+                      value={data.value}
+                      onChange={handleChange}
                       class="
+                          block
+                          w-full
+                          px-5
+                          py-3
+                          text-base
+                          placeholder-gray-300
+                          transition
+                          duration-500
+                          ease-in-out
+                          transform
+                          border border-transparent
+                          rounded-lg
+                          text-neutral-600
+                          bg-gray-50
+                          focus:outline-none
+                          focus:border-transparent
+                          focus:ring-2
+                          focus:ring-white
+                          focus:ring-offset-2
+                          focus:ring-offset-gray-300
+                        "
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label
+                    for="email"
+                    class="block text-sm font-medium text-neutral-600"
+                  >
+                    Email address
+                  </label>
+                  <div class="mt-1">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      required=""
+                      placeholder="Your Email"
+                      onChange={handleChange}
+                      value={data.value}
+                      class="
+                          block
+                          w-full
+                          px-5
+                          py-3
+                          text-base
+                          placeholder-gray-300
+                          transition
+                          duration-500
+                          ease-in-out
+                          transform
+                          border border-transparent
+                          rounded-lg
+                          text-neutral-600
+                          bg-gray-50
+                          focus:outline-none
+                          focus:border-transparent
+                          focus:ring-2
+                          focus:ring-white
+                          focus:ring-offset-2
+                          focus:ring-offset-gray-300
+                        "
+                    />
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <label
+                    for="password"
+                    class="block text-sm font-medium text-neutral-600"
+                  >
+                    Password
+                  </label>
+                  <div class="mt-1">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      autocomplete="current-password"
+                      required=""
+                      placeholder="Your Password"
+                      onChange={handleChange}
+                      value={data.value}
+                      class="
+                          block
+                          w-full
+                          px-5
+                          py-3
+                          text-base
+                          placeholder-gray-300
+                          transition
+                          duration-500
+                          ease-in-out
+                          transform
+                          border border-transparent
+                          rounded-lg
+                          text-neutral-600
+                          bg-gray-50
+                          focus:outline-none
+                          focus:border-transparent
+                          focus:ring-2
+                          focus:ring-white
+                          focus:ring-offset-2
+                          focus:ring-offset-gray-300
+                        "
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <button
+                    onClick={handleSubmit}
+                    class="
                         flex
                         items-center
                         justify-center
@@ -256,20 +201,19 @@ const SignUp = () => {
                         focus:ring-2
                         focus:ring-offset-2
                         focus:ring-blue-500
-                      ">
-                      {" "}
-                      Sign Me Up{" "}
-                    </button>
-                  </div>
-                </form>
+                      "
+                  >
+                    Sign Me Up
+                  </button>
+                </div>
+
                 <div class="relative my-4">
                   <div class="absolute inset-0 flex items-center">
                     <div class="w-full border-t border-gray-300"></div>
                   </div>
                   <div class="relative flex justify-center text-sm">
                     <span class="px-2 bg-white text-neutral-600">
-                      {" "}
-                      Or continue with{" "}
+                      Or continue with
                     </span>
                   </div>
                 </div>
@@ -296,7 +240,8 @@ const SignUp = () => {
                       focus:ring-2
                       focus:ring-offset-2
                       focus:ring-gray-500
-                    ">
+                    "
+                  >
                     <div class="flex items-center justify-center">
                       <span class="ml-4"> Log in with Google</span>
                     </div>

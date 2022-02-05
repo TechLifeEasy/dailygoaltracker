@@ -282,6 +282,8 @@ function DayTask({ changeDaySnap, index, data }) {
       }
         {
           data.type === "today" && 
+          <>
+          
             <button
               type="submit"
               class="
@@ -317,6 +319,39 @@ function DayTask({ changeDaySnap, index, data }) {
                     'Edit'
                 }
             </button>
+
+            <button
+              type="submit"
+              class="
+              flex
+              items-center
+                        justify-center
+                        w-4/12
+                        px-4
+                        py-4
+                        mt-4
+                        text-base
+                        font-medium
+                        text-center text-white
+                        transition
+                        duration-500
+                        ease-in-out
+                        transform
+                        bg-blue-600
+                        rounded-xl
+                        hover:bg-blue-700
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-offset-2
+                        focus:ring-blue-500
+                        "
+            >
+                
+                    
+                    Done
+                
+            </button>
+            </>
           }
            <div className="flex w-4/12 m-auto items-center   text-base
                         font-medium gap-2 text-white justify-center cursor-pointer  p-4 bg-red-500 rounded-xl "

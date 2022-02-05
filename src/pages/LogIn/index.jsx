@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import image from "../../assets/login.svg";
+import { SingIn } from "../../Api/user";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [data, setData] = useState({
     email: "",
     password: "",
   });
+
+  const [isLoading, setIsLoadding] = useState(false);
 
   //   const router = useRouter();
 
@@ -15,8 +19,21 @@ const SignUp = () => {
     setData({ ...data, [input.name]: input.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit =  () => {
+    console.log(data)
+    // e.preventDefault();
+    setIsLoadding(true);
+    SingIn(data.email, data.password)
+      .then(() => {
+        // window.location.href='/'
+      })
+      .catch((e)=>{
+        alert(e)
+      })
+      .finally(() => {
+        setIsLoadding(false);
+      });
+    
   
   };
 
@@ -51,12 +68,7 @@ const SignUp = () => {
             </div>
             <div class="mt-8">
               <div class="mt-6">
-                <form
-                  action="#"
-                  method="POST"
-                  class="space-y-6"
-                  onSubmit={handleSubmit}
-                >
+             
                   <div>
                     <label
                       for="email"
@@ -74,7 +86,7 @@ const SignUp = () => {
                         required=""
                         placeholder="Your Email"
                         onChange={handleChange}
-                        value={data.value}
+                        value={data.email}
                         class="
                           block
                           w-full
@@ -117,7 +129,7 @@ const SignUp = () => {
                         required=""
                         placeholder="Your Password"
                         onChange={handleChange}
-                        value={data.value}
+                        value={data.password}
                         class="
                           block
                           w-full
@@ -177,6 +189,11 @@ const SignUp = () => {
                       </a>
                     </div>
                   </div>
+                  <div className="flex items-center justify-end">
+                  <Link to='/signup'>
+                    Sign Up Hear
+                  </Link>
+                </div>
                   <div>
                     <button
                       type="submit"
@@ -202,12 +219,19 @@ const SignUp = () => {
                         focus:ring-offset-2
                         focus:ring-blue-500
                       "
+
+                      onClick={handleSubmit}
                     >
-                      {" "}
-                      Log In{" "}
+                      {
+                        isLoading 
+                        ?
+                        'Loadding'
+                        :
+                        'Log In'
+                      }
                     </button>
                   </div>
-                </form>
+               
                 <div class="relative my-4">
                   <div class="absolute inset-0 flex items-center">
                     <div class="w-full border-t border-gray-300"></div>

@@ -7,6 +7,7 @@ import Onboarding from "./pages/Onboarding";
 import Task from "./pages/Home";
 import pageNotFound from "./pageNotFound";
 import Tabs from "./components/Tabs";
+import Footer from "./components/Footer";
 
 function App() {
   useEffect(() => {
@@ -18,7 +19,8 @@ function App() {
       {/* <pageNotFound /> */}
       {/* <Navbar /> */}
       {/* <Task /> */}
-      <Tabs />
+      {/* <Tabs /> */}
+      <Footer />
       {/* <Onboarding /> */}
       {/* <SignUp /> */}
       {/* <LogIn /> */}

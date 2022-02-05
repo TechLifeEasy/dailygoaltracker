@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import image from "../../assets/signup.svg";
 import { SingUp } from "../../Api/user";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [data, setData] = useState({
@@ -17,11 +18,14 @@ const SignUp = () => {
     setData({ ...data, [input.name]: input.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    console.log(data)
+    // e.preventDefault();
     setIsLoadding(true);
-    SingUp(data.email, data.name, data.password)
-      .then(() => {})
+    SingUp(data.email,  data.password,data.name)
+      .then(() => {
+        // window.location.href='/'
+      })
       .finally(() => {
         setIsLoadding(false);
       });
@@ -65,7 +69,7 @@ const SignUp = () => {
                       autocomplete="name"
                       required=""
                       placeholder="Your Name"
-                      value={data.value}
+                      value={data.name}
                       onChange={handleChange}
                       class="
                           block
@@ -108,7 +112,7 @@ const SignUp = () => {
                       required=""
                       placeholder="Your Email"
                       onChange={handleChange}
-                      value={data.value}
+                      value={data.email}
                       class="
                           block
                           w-full
@@ -150,7 +154,7 @@ const SignUp = () => {
                       required=""
                       placeholder="Your Password"
                       onChange={handleChange}
-                      value={data.value}
+                      value={data.password}
                       class="
                           block
                           w-full
@@ -175,6 +179,12 @@ const SignUp = () => {
                         "
                     />
                   </div>
+                </div>
+
+                <div className="flex items-center justify-end">
+                  <Link to='/login'>
+                    Log In Hear
+                  </Link>
                 </div>
 
                 <div>
@@ -203,7 +213,7 @@ const SignUp = () => {
                         focus:ring-blue-500
                       "
                   >
-                    Sign Me Up
+                    {isLoading ? "Loadding" : "Sign Up"}
                   </button>
                 </div>
 

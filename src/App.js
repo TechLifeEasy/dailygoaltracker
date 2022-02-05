@@ -5,7 +5,7 @@ import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Onboarding from "./pages/Onboarding";
 import Task from "./pages/Home";
-// import Navbar from "./pages/helper/Navbar";
+import pageNotFound from "./pageNotFound";
 
 function App() {
   useEffect(() => {
@@ -14,6 +14,7 @@ function App() {
 
   return (
     <div className="App">
+      {/* <pageNotFound /> */}
       {/* <Navbar /> */}
       <Task />
       {/* <Onboarding /> */}

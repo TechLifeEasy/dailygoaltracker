@@ -1,6 +1,35 @@
-import React from "react";
 
-const TotalTaskCard = () => {
+import React from "react";
+import {useState,useEffect} from "react";
+const TotalTaskCard = ({data,changeDaySnap}) => {
+
+  const [taks, settaks] = useState({p:0,t:0});
+
+  console.log(data,'gieodsm')
+
+
+
+  useEffect(() => {
+
+    let arr=data?.tasks
+    if(!arr) return;
+    let t=arr.length;
+    console.log(t)
+    let p=0;
+
+    for(let i=0;i<arr?.length;i++){
+      if(arr[i].isdone){
+        p++;
+      }
+    }
+    settaks({p,t})
+    
+  }, []);
+
+  if(!data){
+    return <></>;
+  }
+
   return (
     <div>
       <div class="shadow-lg rounded-2xl p-4 bg-white dark:bg-gray-700 w-full">
@@ -19,33 +48,31 @@ const TotalTaskCard = () => {
         </div>
         <div class="flex items-center justify-between mb-4 space-x-12">
           <span class="px-2 py-1 flex items-center font-semibold text-xs rounded-md text-green-700 bg-green-50">
-            COMPLETED
+            {/* {.}/ */}
           </span>
-          <span class="px-2 py-1 flex items-center font-semibold text-xs rounded-md text-green-600 border border-green-600 bg-white">
-            Let's Go
-          </span>
+        
         </div>
         <div class="block m-auto">
           <div>
             <span class="text-sm inline-block text-gray-500 text-3xl   dark:text-gray-100">
               Task done :
-              <span class="text-gray-700 dark:text-white font-bold">50</span>
-              /50
+              <span class="text-gray-700 dark:text-white font-bold">{taks.p}</span>
+              /{taks.t && '0'}
             </span>
           </div>
-          <div>
+          {/* <div>
             <div class="bg-white rounded-lg block p-4 m-auto">
               <div class="w-full h-4 bg-gray-400 rounded-full mt-3">
                 <div class="w-3/4 h-full text-center text-xs text-white bg-pink-300 rounded-full">
-                  75%
+                {}
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
-        <div class="flex items-center justify-start my-4 space-x-4">
+        {/* <div class="flex items-center justify-start my-4 space-x-4">
           <span class="px-2 py-1 flex items-center text-xs rounded-md font-semibold text-green-500 bg-green-50">
-            Day 1
+            Day {data.current}
           </span>
           <span class="px-2 py-1 flex items-center text-xs rounded-md text-yellow-600 font-semibold bg-yellow-200">
             Task Name
@@ -54,7 +81,12 @@ const TotalTaskCard = () => {
 
         <span class="px-2 py-1 flex w-36 mt-4 items-center text-xs rounded-md font-semibold text-yellow-500 bg-yellow-100">
           Next Task: 18 JUN
-        </span>
+        </span> */}
+          <span class="my-5 cursor-pointer px-2 py-1 flex items-center font-semibold text-xs rounded-md text-green-600 border border-green-600 bg-white"
+          onClick={()=>changeDaySnap(0)}
+          >
+            Let's Go
+          </span>
       </div>
     </div>
   );

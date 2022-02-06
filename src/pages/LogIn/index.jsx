@@ -3,12 +3,14 @@ import React, { useState } from "react";
 import image from "../../assets/login.svg";
 import { SingIn } from "../../Api/user";
 import { Link } from "react-router-dom";
+import Load from '../helper/Loading'
 
 const SignUp = () => {
   const [data, setData] = useState({
     email: "",
     password: "",
   });
+  const [isLoading, setIsLoadding] = useState(false);
 
   // const [isLoading, setIsLoadding] = useState(false);
 
@@ -22,11 +24,15 @@ const SignUp = () => {
 
   const handleSubmit =  () => {
     console.log(data)
+
+    setIsLoadding(true);
    
     SingIn(data.email, data.password)
       .then(() => {
         // window.location.href='/'
-      })
+      }).finally(() => {
+        setIsLoadding(false);
+      });
     
     
   
@@ -34,6 +40,7 @@ const SignUp = () => {
 
   return (
     <section>
+       {isLoading && <Load></Load>}
       <div class="flex min-h-screen overflow-hidden">
         <div class="relative flex-1 hidden w-0 overflow-hidden lg:block">
           <img

@@ -164,7 +164,7 @@ export default function Days({data}) {
         ></DayTask>
       ) : (
         <>
-          <StatisticsCard  changeDaySnap={changeDaySnap} data={daysUpdate[0]} />
+          {/* <StatisticsCard  changeDaySnap={changeDaySnap} data={daysUpdate[0]} /> */}
           <DayBarList
             changeDaySnap={changeDaySnap}
             datalist={daysUpdate}

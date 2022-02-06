@@ -5,7 +5,7 @@ import SignUp from "./pages/SignUp/index";
 import LogIn from "./pages/LogIn/index";
 import Home from "./pages/Home/index";
 import {UserAuthState} from './Api/user';
-
+import Loadisng from "./pages/helper/Loading";
 
 import { BrowserRouter as Router, Switch, Route, Link ,Routes} from "react-router-dom";
 
@@ -22,7 +22,7 @@ function App() {
   }, []);
 
   if(Loading){
-    return <h1>Loading...</h1>
+    return <Loadisng></Loadisng>
   }
 
  

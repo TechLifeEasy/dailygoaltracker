@@ -10,9 +10,9 @@ const SingUp = async ( email, password, displayName ) => {
                 displayName: displayName
             }).then(()=>{
                 localStorage.setItem('user','hash');
-                console.log('done')
-                
+                console.log('done')  
             })
+            localStorage.setItem('user','hash');
         })
         .catch(e => alert(e))
         .finally(e=>window.location.href='/')

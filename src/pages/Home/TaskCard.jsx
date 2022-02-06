@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { updateDoc } from "../../Api/task";
+import Load from '../helper/Loading'
 // {
 //   finishdate: "2022-02-2",
 //   isdone: true,
@@ -18,7 +19,7 @@ const TaskCard = ({ changeDaySnap, index, data, dataHole }) => {
     tasks: data.tasks,
   });
   const [isEditTask, setIsEditTask] = useState(false);
-
+  const [isLoading, setIsLoadding] = useState(false);
   function UpdateMyData() {
     if (isEditTask) {
       return;
@@ -28,44 +29,43 @@ const TaskCard = ({ changeDaySnap, index, data, dataHole }) => {
       finishdate: "",
       isdone: false,
       title: taskInfo.title,
-      tasks:taskInfo.tasks
+      tasks: taskInfo.tasks,
     };
 
-    let c=0;
-    for(let i=0;i<taskInfo.tasks.length;i++){
-      if(taskInfo.tasks[i].isdone)c++;
+    let c = 0;
+    for (let i = 0; i < taskInfo.tasks.length; i++) {
+      if (taskInfo.tasks[i].isdone) c++;
     }
-    if(c!==0 && taskInfo.tasks.length==c){
-      let d=new Date(data.date);
-      mydata.finishdate=d.toDateString();
-      mydata.isdone=true;
+    if (c !== 0 && taskInfo.tasks.length == c) {
+      let d = new Date(data.date);
+      mydata.finishdate = d.toDateString();
+      mydata.isdone = true;
     }
 
-    
-    
-    
-    console.log(mydata)
-    
+    console.log(mydata);
+
     dataHole.days[index] = mydata;
-    let x=0;
+    let x = 0;
 
-    for(let i=0;i<dataHole.days.length;i++){
-      if(dataHole.days[i].isdone==true){
+    for (let i = 0; i < dataHole.days.length; i++) {
+      if (dataHole.days[i].isdone == true) {
         x++;
       }
     }
-    dataHole.current=x;
+    dataHole.current = x;
 
-    console.log(dataHole)
+    console.log(dataHole);
+
+    setIsLoadding(true)
 
     updateDoc(dataHole)
-    .then(()=>{
-      console.log('sone')
-    }).catch((e)=>{
-      console.log(e)
-    }).finally(()=>{
-      
-    })
+      .then(() => {
+        console.log("sone");
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+      .finally(() => {setIsLoadding(false)});
   }
 
   function changeState() {
@@ -100,6 +100,7 @@ const TaskCard = ({ changeDaySnap, index, data, dataHole }) => {
 
   return (
     <div>
+      {isLoading && <h1>Updating...</h1>}
       <div class="shadow-lg rounded-xl w-full max-w-xs p-6 bg-white dark:bg-gray-800 overflow-hidden">
         <div class="flex flex-col md:flex-row items-center justify-between gap-3">
           <div class="flex items-center justify-start w-full flex-grow">

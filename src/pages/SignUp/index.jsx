@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import image from "../../assets/signup.svg";
 import { SingUp } from "../../Api/user";
 import { Link } from "react-router-dom";
+import Load from '../helper/Loading'
 
 const SignUpP = () => {
   const [data, setData] = useState({
@@ -33,6 +34,8 @@ const SignUpP = () => {
 
   return (
     <section>
+
+      {isLoading && <Load></Load>}
       <div class="flex min-h-screen overflow-hidden">
         <div
           class="

@@ -63,10 +63,12 @@ const UserAuthState = async (setLoading) => {
          }
          setLoading(false)
         } else {
+            setLoading(false)
             if(!window.location.href.includes('/signup')){
               
                 window.location.href='/signup'
           }
+
         }
     })
 

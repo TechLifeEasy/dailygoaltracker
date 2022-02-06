@@ -49,7 +49,7 @@ export default function Days({data}) {
     let lastDate = new Date(data.startdate);
 
     for (let i = 0; i < data.days.length; ) {
-      let current = new Date(data.days[i].finishdate);
+      let current = new Date(data.days[i].finishdate );
       let diff = current - lastDate;
       let day = Math.floor(diff / (1000 * 60 * 60 * 24));
 

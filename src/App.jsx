@@ -1,8 +1,8 @@
 import "./App.css";
 import { useEffect,useState } from "react";
 // import { SingUp } from "./Api/user";
-import SignUp from "./pages/SignUp";
-import LogIn from "./pages/LogIn";
+import SignUp from "./pages/SignUp/index";
+import LogIn from "./pages/LogIn/index";
 import Home from "./pages/Home/index";
 import {UserAuthState} from './Api/user';
 
@@ -17,25 +17,22 @@ function App() {
 
   useEffect(() => {
     
-    UserAuthState().finally(()=>{
-
-      setLoading(false);
-
-    });
+    UserAuthState(setLoading)
 
   }, []);
 
   if(Loading){
-    return <h1>Loading</h1>
+    return <h1>Loading...</h1>
   }
 
  
 
   return (
-    // <SingUp />
-      <Router>
+    // <Home />
 
+    // <SignUp />
     <div className="App">
+      <Router>
 
       <Routes>
 
@@ -49,8 +46,8 @@ function App() {
           
         </Route>
       </Routes>
-    </div>
       </Router>
+    </div>
   );
 }
 

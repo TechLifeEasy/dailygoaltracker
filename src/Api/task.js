@@ -9,12 +9,15 @@ const AddTask = async (data) => {
     }
     const userId = auth.currentUser.uid;
 
+    const datas=new Date(new Date(data.startdate).toDateString());
+
     const Data = {
         current: 0,
         days: [],
+        finish: false,
         dayscount: data.dayscount,
         finishdate: '-',
-        startdate: data.startdate,
+        startdate: datas,
         username: auth.currentUser.displayName
     }
 
@@ -43,15 +46,15 @@ const GetTask=async ()=>{
     }
     const userId = auth.currentUser.uid;
 
-    const titleref=  await db.collection('USER-CO').doc(userId+"12")
+    const titleref=  await db.collection('USER-CO').doc(userId)
     const titledata=await titleref.get()
 
-    if(!titledata.data()) return {}
+    if(!titledata.data().tasks) return false;
 
     const title=titledata.data().tasks[0];
 
     console.log(title)
-    const dataref =db.collection(title).doc(userId+"12")
+    const dataref =db.collection(title).doc(userId)
 
     const data=await dataref.get();
 
@@ -91,7 +94,7 @@ const updateDoc = async (data)=>{
 
 // AddTask({
 //     title: '500daysofCode',
-//     userId: 'axs',
+//   
 //     dayscount: 100,
 //     startdate: '2022-02-03'
 // })
@@ -112,4 +115,4 @@ const updateDoc = async (data)=>{
 
 
 
-export { AddTask };
+export { AddTask,GetTask,updateDoc };

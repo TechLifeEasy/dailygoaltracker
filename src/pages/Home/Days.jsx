@@ -1,29 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { MdDateRange, MdBrightnessLow } from "react-icons/md";
 import { ImCross } from "react-icons/im";
-const data = {
-  current: 2,
-  dayscount: 100,
-  finish: false,
-  startdate: "2022-01-31",
-  title: "scxv",
-  username: "zeel",
-  days: [
-    {
-      finishdate: "2022-02-2",
-      isdone: true,
-      taks: "this is me",
-    },
-    {
-      finishdate: "2022-02-5",
-      isdone: true,
-      taks: "this is me",
-    },
-  ],
-  finish: false,
-};
+import TaskCard from "./TaskCard";
+import StatisticsCard from "./StatisticsCard";
+// import TaskCard from "./TaskCard";
 
-export default function Days() {
+// const data = {
+//   current: 2,
+//   dayscount: 100,
+//   finish: false,
+//   startdate: "2022-01-31",
+//   title: "scxv",
+//   username: "zeel",
+//   days: [
+//     {
+//       finishdate: "2022-02-2",
+//       isdone: true,
+//       title: "Learn Java",
+//       tasks: [
+//         {
+//           isdone: false,
+//           text: "do somting",
+//         },
+//       ],
+//     },
+//     {
+//       finishdate: "2022-02-5",
+//       isdone: true,
+//       taks: "this is me",
+//     },
+//   ],
+ 
+// };
+
+export default function Days({data}) {
   const [daysUpdate, setDaysUpdate] = useState([]);
 
   const [DaySnap, setSnap] = useState({
@@ -55,17 +65,22 @@ export default function Days() {
       //   }
 
       if (day === 0) {
+
+        let diff = new Date() - new Date(lastDate);
+
+        let islast = Math.floor(diff / (1000 * 60 * 60 * 24));
+
         newDays.push({
           isdone: data.days[i].isdone,
-          taks: "this is me",
-          type: "done",
+          tasks: data.days[i].tasks,
+          type:  data.days[i].isdone?(islast?'today' :"done"):'miss',
           date: lastDate,
         });
         i++;
       } else {
         newDays.push({
           isdone: false,
-          taks: "",
+          taks: [],
           type: "miss",
           date: lastDate,
         });
@@ -78,31 +93,40 @@ export default function Days() {
     }
 
     console.table(newDays);
-    console.table(data.dayscount - data.current);
-    for (let i = 0; i < data.dayscount - data.current; i++) {
-      newDays.push({
-        isdone: false,
-        taks: "",
-        type: "coming",
-        date: lastDate,
-      });
+    // console.table(data.dayscount - data.current);
+    let i=newDays.length;
+    while (true) {
+     
+      let diff = new Date() - new Date(lastDate);
+
+      let day = Math.floor(diff / (1000 * 60 * 60 * 24));
+      if (day < 0) {
+        break;
+      }else if(day===0){
+
+        newDays.push({
+          isdone: false,
+          tasks: [],
+          type: "today",
+          date: lastDate,
+        });
+        break;
+      }else{
+        newDays.push({
+          isdone: false,
+          tasks: [],
+          type: "miss",
+          date: lastDate,
+        });
+      }
+
 
       let l = +lastDate.getTime() + 24 * 60 * 60 * 1000;
 
       lastDate = new Date(l);
+      i++;
     }
 
-    for (let i = 0; i < newDays.length; i++) {
-      let diff = new Date() - new Date(newDays[i].date);
-
-      let day = Math.floor(diff / (1000 * 60 * 60 * 24));
-      if (day === 0) {
-        newDays[i].type = "today";
-        break;
-      }
-    }
-
-    // console.table(newDays.reverse());
 
     setDaysUpdate(newDays.reverse());
   }
@@ -124,44 +148,49 @@ export default function Days() {
           changeDaySnap={changeDaySnap}
           index={DaySnap.index}
           data={daysUpdate[DaySnap.index]}
+          dataHole={data}
         ></DayTask>
       ) : (
-        <DayBarList
-          changeDaySnap={changeDaySnap}
-          datalist={daysUpdate}
-        ></DayBarList>
+        <>
+          <StatisticsCard />
+          <DayBarList
+            changeDaySnap={changeDaySnap}
+            datalist={daysUpdate}
+            data={data}
+          ></DayBarList>
+        </>
       )}
     </>
   );
 }
 
-function DayBarList({ datalist, changeDaySnap }) {
+function DayBarList({ datalist, changeDaySnap ,data}) {
   // console.log(datalist)
 
   return (
     <div className="container flex flex-col mx-auto w-full items-center justify-center bg-white dark:bg-gray-800 rounded-lg shadow">
       <div className=" py-5 sm:px-6 border-b w-full ">
-        <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
+        <h3 className="text-lg leading-6 text-center font-medium text-gray-900 dark:text-white">
           History
         </h3>
         <div className="flex w-full items-center justify-center mt-4">
-
-        <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-200">
-          Details and informations about your Activity.
-        </p>
-        <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-200">
-          {data.current + "/" + data.dayscount}
-        </p>
-      </div>
+          <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-200">
+            Details and informations about your Activity Day
+          </p>
+          <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-200">
+            {data.current + "/" + data.dayscount}
+          </p>
         </div>
+      </div>
       <ul className="w-11/12 flex flex-col">
-        {datalist.map((data, index) => {
+        {datalist.map((data1, index) => {
           return (
             <DayBar
-              {...data}
+              {...data1}
               changeDaySnap={changeDaySnap}
               index={index}
               key={index}
+              data={data}
             ></DayBar>
           );
         })}
@@ -170,7 +199,7 @@ function DayBarList({ datalist, changeDaySnap }) {
   );
 }
 
-function DayBar({ type, date, changeDaySnap, index }) {
+function DayBar({ type, date, changeDaySnap, index,data }) {
   if (type == "coming") {
     return <></>;
   }
@@ -224,25 +253,17 @@ function DayBar({ type, date, changeDaySnap, index }) {
   );
 }
 
-function DayTask({ changeDaySnap, index, data }) {
-  console.log(data);
-
-  const [taskInfo, setTask] = useState(data.taks);
-  const [isEditTask, setIsEditTask] = useState(false);
-
-  function changeState(){
-      setIsEditTask(!isEditTask);
-  }
-
+function DayTask(props) {
   return (
     <div
       className="m-auto w-11/12 p-4 flex flex-col gap-3 items-center
     justify-center "
     >
-     
-      <h1 className="text-2xl"> {new Date(data.date).toDateString()}</h1>
+      <TaskCard {...props}> </TaskCard>
 
-      {
+      {/* <h1 className="text-2xl"> {new Date(data.date).toDateString()}</h1> */}
+
+      {/* {
       
       isEditTask ? 
         <div class="w-full m-auto">
@@ -360,7 +381,7 @@ function DayTask({ changeDaySnap, index, data }) {
         >
           <ImCross></ImCross> Close
         </div>
-      </div>
-  
+      </div> */}
+    </div>
   );
 }

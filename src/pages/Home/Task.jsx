@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import image from "../../assets/login.svg";
+import { AddTask } from "../../Api/task";
 
 const Task = () => {
   const [data, setData] = useState({
@@ -21,6 +22,16 @@ const Task = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    AddTask(data)
+    .then(()=>{
+      console.log('done')
+      window.location.href='/'
+    }).catch((e)=>{
+      console.log(e)
+    }).finally(()=>{
+
+    })
   };
 
   return (
@@ -191,7 +202,10 @@ const Task = () => {
                         focus:ring-2
                         focus:ring-offset-2
                         focus:ring-blue-500
-                      ">
+                      "
+                      
+                      onClick={handleSubmit}
+                      >
                   Start
                 </button>
               </div>

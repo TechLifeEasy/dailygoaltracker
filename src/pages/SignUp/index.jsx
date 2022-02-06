@@ -3,7 +3,7 @@ import image from "../../assets/signup.svg";
 import { SingUp } from "../../Api/user";
 import { Link } from "react-router-dom";
 
-const SignUp = () => {
+const SignUpP = () => {
   const [data, setData] = useState({
     email: "",
     name: "",
@@ -273,4 +273,17 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpP;
+
+// import React from 'react';
+
+// const Index = () => {
+//   return (
+//     <div>
+//       zeel
+//     </div>
+//   );
+// }
+
+// export default Index;
+

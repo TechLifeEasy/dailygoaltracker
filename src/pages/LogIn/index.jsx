@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import image from "../../assets/login.svg";
 import { SingIn } from "../../Api/user";
@@ -9,7 +10,7 @@ const SignUp = () => {
     password: "",
   });
 
-  const [isLoading, setIsLoadding] = useState(false);
+  // const [isLoading, setIsLoadding] = useState(false);
 
   //   const router = useRouter();
 
@@ -21,18 +22,12 @@ const SignUp = () => {
 
   const handleSubmit =  () => {
     console.log(data)
-    // e.preventDefault();
-    setIsLoadding(true);
+   
     SingIn(data.email, data.password)
       .then(() => {
         // window.location.href='/'
       })
-      .catch((e)=>{
-        alert(e)
-      })
-      .finally(() => {
-        setIsLoadding(false);
-      });
+    
     
   
   };
@@ -223,10 +218,7 @@ const SignUp = () => {
                       onClick={handleSubmit}
                     >
                       {
-                        isLoading 
-                        ?
-                        'Loadding'
-                        :
+                        
                         'Log In'
                       }
                     </button>
@@ -283,3 +275,16 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
+
+// import React from 'react';
+
+// const Index = () => {
+//   return (
+//     <div>
+//       LOgin
+//     </div>
+//   );
+// }
+
+// export default Index;

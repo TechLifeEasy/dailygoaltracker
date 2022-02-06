@@ -9,12 +9,13 @@ const SingUp = async ( email, password, displayName ) => {
             userCredential.user.updateProfile({
                 displayName: displayName
             }).then(()=>{
+                localStorage.setItem('user','hash');
                 console.log('done')
-                window.location.href='/'
+                
             })
         })
-        .catch(e => console.log(e))
-        .finally()
+        .catch(e => alert(e))
+        .finally(e=>window.location.href='/')
 
 }
 
@@ -24,6 +25,7 @@ const Logout = () => {
     auth.signOut()
         .then(() => {
             console.log('log out..')
+            localStorage.removeItem('user');
             window.location.href='/'
         })
         .catch((e) => console.log(e));
@@ -36,17 +38,18 @@ const SingIn = ( email, password ) => {
 
     auth.signInWithEmailAndPassword(email, password)
         .then((data) => {
-            console.log('Sing In')
+            localStorage.setItem('user','hash');
             window.location.href='/';
         })
         .catch((e) => {
-            console.log(e);
+            alert(e)
+
             // window.location.href='/';
         }).finally()
 
 }
 
-const UserAuthState = async () => {
+const UserAuthState = async (setLoading) => {
 
 
     // const user = auth.currentUser;
@@ -58,6 +61,7 @@ const UserAuthState = async () => {
          if(window.location.href.includes('/signup') || window.location.href.includes('/login')){
                window.location.href='/'
          }
+         setLoading(false)
         } else {
             if(!window.location.href.includes('/signup')){
               

@@ -179,9 +179,17 @@ export default function Days({data}) {
 function DayBarList({ datalist, changeDaySnap ,data}) {
   // console.log(datalist)
 
+
+  if(datalist.length==0){
+    return <h1 className="flex items-center justify-center my-10 text-center capitalize">challenge Start Soon ,{data.startdate}</h1>
+  }
+
   return (
     <div className="container flex flex-col mx-auto w-full items-center justify-center bg-white dark:bg-gray-800 rounded-lg shadow">
       <div className=" py-5 sm:px-6 border-b w-full ">
+        <h3 className="text-2xl my-4 leading-6 text-center font-medium text-gray-900 dark:text-white">
+          {data.title}
+        </h3>
         <h3 className="text-lg leading-6 text-center font-medium text-gray-900 dark:text-white">
           History
         </h3>

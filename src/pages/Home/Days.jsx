@@ -66,9 +66,9 @@ export default function Days({data}) {
 
       if (day === 0) {
 
-        let diff = new Date() - new Date(lastDate);
+        let diff = new Date(new Date().toDateString())  - new Date(lastDate);
 
-        let islast = Math.floor(diff / (1000 * 60 * 60 * 24));
+        let islast = Math.floor(diff / (1000 * 60 * 60 * 24))===0;
 
         newDays.push({
           isdone: data.days[i].isdone,
@@ -95,15 +95,27 @@ export default function Days({data}) {
     console.table(newDays);
     // console.table(data.dayscount - data.current);
     let i=newDays.length;
+    p=0;
     while (true) {
+      console.log('call')
+
+
+
+      // p++;
+
+      // if(p>10) break;
      
-      let diff = new Date() - new Date(lastDate);
+      let diff =new Date(new Date().toDateString()) - lastDate;
+
+      console.log(lastDate,new Date(new Date().toDateString()) )
 
       let day = Math.floor(diff / (1000 * 60 * 60 * 24));
+      console.log(day)
       if (day < 0) {
         break;
       }else if(day===0){
-
+ 
+        console.log('call')
         newDays.push({
           isdone: false,
           tasks: [],
@@ -152,7 +164,7 @@ export default function Days({data}) {
         ></DayTask>
       ) : (
         <>
-          <StatisticsCard />
+          <StatisticsCard  changeDaySnap={changeDaySnap} data={daysUpdate[0]} />
           <DayBarList
             changeDaySnap={changeDaySnap}
             datalist={daysUpdate}

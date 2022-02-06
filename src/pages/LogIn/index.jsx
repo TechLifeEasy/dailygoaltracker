@@ -150,7 +150,7 @@ const SignUp = () => {
                       />
                     </div>
                   </div>
-                  <div class="flex items-center justify-between">
+                  {/* <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <input
                         id="remember-me"
@@ -183,8 +183,8 @@ const SignUp = () => {
                         Forgot your password?{" "}
                       </a>
                     </div>
-                  </div>
-                  <div className="flex items-center justify-end">
+                  </div> */}
+                  <div className="flex items-center justify-end my-3">
                   <Link to='/signup'>
                     Sign Up Hear
                   </Link>
@@ -224,7 +224,7 @@ const SignUp = () => {
                     </button>
                   </div>
                
-                <div class="relative my-4">
+                {/* <div class="relative my-4">
                   <div class="absolute inset-0 flex items-center">
                     <div class="w-full border-t border-gray-300"></div>
                   </div>
@@ -234,8 +234,8 @@ const SignUp = () => {
                       Or continue with{" "}
                     </span>
                   </div>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                   <button
                     type="submit"
                     class="
@@ -263,8 +263,8 @@ const SignUp = () => {
                     <div class="flex items-center justify-center">
                       <span class="ml-4"> Log in with Google</span>
                     </div>
-                  </button>
-                </div>
+                  </button> */}
+                {/* </div> */}
               </div>
             </div>
           </div>

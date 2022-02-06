@@ -181,7 +181,7 @@ const SignUpP = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-end">
+                <div className="flex items-center justify-end my-3">
                   <Link to='/login'>
                     Log In Hear
                   </Link>
@@ -216,7 +216,7 @@ const SignUpP = () => {
                     {isLoading ? "Loadding" : "Sign Up"}
                   </button>
                 </div>
-
+{/* 
                 <div class="relative my-4">
                   <div class="absolute inset-0 flex items-center">
                     <div class="w-full border-t border-gray-300"></div>
@@ -256,7 +256,7 @@ const SignUpP = () => {
                       <span class="ml-4"> Log in with Google</span>
                     </div>
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

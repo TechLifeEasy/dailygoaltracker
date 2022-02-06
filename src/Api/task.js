@@ -9,7 +9,7 @@ const AddTask = async (data) => {
     }
     const userId = auth.currentUser.uid;
 
-    const datas=new Date(new Date(data.startdate).toDateString());
+    const datas=new Date(data.startdate).toDateString();
 
     const Data = {
         current: 0,

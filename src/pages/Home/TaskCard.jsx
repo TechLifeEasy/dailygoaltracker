@@ -37,8 +37,8 @@ const TaskCard = ({ changeDaySnap, index, data, dataHole }) => {
       if (taskInfo.tasks[i].isdone) c++;
     }
     if (c !== 0 && taskInfo.tasks.length == c) {
-      let d = new Date(data.date);
-      mydata.finishdate = d.toDateString();
+      let d = new Date().toDateString();
+      mydata.finishdate = d;
       mydata.isdone = true;
     }
 
@@ -101,25 +101,25 @@ const TaskCard = ({ changeDaySnap, index, data, dataHole }) => {
   return (
     <div>
       {isLoading && <h1>Updating...</h1>}
-      <div class="shadow-lg rounded-xl w-full max-w-xs p-6 bg-white dark:bg-gray-800 overflow-hidden">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-3">
-          <div class="flex items-center justify-start w-full flex-grow">
-            <div class="flex flex-col items-start">
-              <span class="dark:text-white text-gray-700">
+      <div className="shadow-lg rounded-xl w-full max-w-xs p-6 bg-white dark:bg-gray-800 overflow-hidden">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-3">
+          <div className="flex items-center justify-start w-full flex-grow">
+            <div className="flex flex-col items-start">
+              <span className="dark:text-white text-gray-700">
                 Day {new Date(data.date).toDateString()}
               </span>
             </div>
           </div>
-          <div class="flex-none hidden md:block ">
-            <span class="w-full px-3 py-1 text-sm rounded-full text-white bg-blue-500">
+          <div className="flex-none hidden md:block ">
+            <span className="w-full px-3 py-1 text-sm rounded-full text-white bg-blue-500">
               Today
             </span>
           </div>
         </div>
 
         {isEditTask ? (
-          <div class="w-full m-auto mt-4flex flex-col gap-4">
-            <label class="text-gray-700 my-4" for="name">
+          <div className="w-full m-auto mt-4flex flex-col gap-4">
+            <label className="text-gray-700 my-4" for="name">
               <p>Title</p>
               <textarea
                 className="flex-1  appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg  text-xl focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"

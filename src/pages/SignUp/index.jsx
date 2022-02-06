@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import image from "../../assets/signup.svg";
 import { SingUp } from "../../Api/user";
 import { Link } from "react-router-dom";
-import Load from '../helper/Loading'
+import Load from "../helper/Loading";
 
 const SignUpP = () => {
   const [data, setData] = useState({
@@ -20,10 +20,10 @@ const SignUpP = () => {
   };
 
   const handleSubmit = () => {
-    console.log(data)
+    console.log(data);
     // e.preventDefault();
     setIsLoadding(true);
-    SingUp(data.email,  data.password,data.name)
+    SingUp(data.email, data.password, data.name)
       .then(() => {
         // window.location.href='/'
       })
@@ -34,11 +34,10 @@ const SignUpP = () => {
 
   return (
     <section>
-
       {isLoading && <Load></Load>}
-      <div class="flex min-h-screen overflow-hidden">
+      <div className="flex min-h-screen overflow-hidden">
         <div
-          class="
+          className="
             flex flex-col
             justify-center
             flex-1
@@ -49,22 +48,22 @@ const SignUpP = () => {
             xl:px-24
           "
         >
-          <div class="w-full max-w-xl mx-auto lg:w-96">
+          <div className="w-full max-w-xl mx-auto lg:w-96">
             <div>
-              <h2 class="mt-6 text-3xl font-extrabold text-neutral-600">
+              <h2 className="mt-6 text-3xl font-extrabold text-neutral-600">
                 Sign Up.
               </h2>
             </div>
-            <div class="mt-8">
-              <div class="mt-6">
+            <div className="mt-8">
+              <div className="mt-6">
                 <div>
                   <label
                     for="name"
-                    class="block text-sm font-medium text-neutral-600"
+                    className="block text-sm font-medium text-neutral-600"
                   >
                     Full Name
                   </label>
-                  <div class="mt-1">
+                  <div className="mt-1">
                     <input
                       id="name"
                       name="name"
@@ -74,7 +73,7 @@ const SignUpP = () => {
                       placeholder="Your Name"
                       value={data.name}
                       onChange={handleChange}
-                      class="
+                      className="
                           block
                           w-full
                           px-5
@@ -102,11 +101,11 @@ const SignUpP = () => {
                 <div>
                   <label
                     for="email"
-                    class="block text-sm font-medium text-neutral-600"
+                    className="block text-sm font-medium text-neutral-600"
                   >
                     Email address
                   </label>
-                  <div class="mt-1">
+                  <div className="mt-1">
                     <input
                       id="email"
                       name="email"
@@ -116,7 +115,7 @@ const SignUpP = () => {
                       placeholder="Your Email"
                       onChange={handleChange}
                       value={data.email}
-                      class="
+                      className="
                           block
                           w-full
                           px-5
@@ -141,14 +140,14 @@ const SignUpP = () => {
                     />
                   </div>
                 </div>
-                <div class="space-y-1">
+                <div className="space-y-1">
                   <label
                     for="password"
-                    class="block text-sm font-medium text-neutral-600"
+                    className="block text-sm font-medium text-neutral-600"
                   >
                     Password
                   </label>
-                  <div class="mt-1">
+                  <div className="mt-1">
                     <input
                       id="password"
                       name="password"
@@ -158,7 +157,7 @@ const SignUpP = () => {
                       placeholder="Your Password"
                       onChange={handleChange}
                       value={data.password}
-                      class="
+                      className="
                           block
                           w-full
                           px-5
@@ -184,16 +183,15 @@ const SignUpP = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-end my-3">
-                  <Link to='/login'>
-                    Log In Hear
-                  </Link>
-                </div>
+                {/* <div className="flex items-center justify-end my-3">
+                  <Link to="/login">Log In Hear</Link>
+                </div> */}
+               
 
                 <div>
                   <button
                     onClick={handleSubmit}
-                    class="
+                    className="
                         flex
                         items-center
                         justify-center
@@ -219,13 +217,21 @@ const SignUpP = () => {
                     {isLoading ? "Loadding" : "Sign Up"}
                   </button>
                 </div>
-{/* 
-                <div class="relative my-4">
-                  <div class="absolute inset-0 flex items-center">
-                    <div class="w-full border-t border-gray-300"></div>
+                <div className="flex items-center justify-center my-4">
+                  <Link
+                    to="/login"
+                    className="font-medium text-blue-600 hover:text-blue-500"
+                  >
+                    Log In Hear
+                  </Link>
+                </div>
+                {/* 
+                <div className="relative my-4">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-300"></div>
                   </div>
-                  <div class="relative flex justify-center text-sm">
-                    <span class="px-2 bg-white text-neutral-600">
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-white text-neutral-600">
                       Or continue with
                     </span>
                   </div>
@@ -233,7 +239,7 @@ const SignUpP = () => {
                 <div>
                   <button
                     type="submit"
-                    class="
+                    className="
                       w-full
                       items-center
                       block
@@ -255,8 +261,8 @@ const SignUpP = () => {
                       focus:ring-gray-500
                     "
                   >
-                    <div class="flex items-center justify-center">
-                      <span class="ml-4"> Log in with Google</span>
+                    <div className="flex items-center justify-center">
+                      <span className="ml-4"> Log in with Google</span>
                     </div>
                   </button>
                 </div> */}
@@ -264,9 +270,9 @@ const SignUpP = () => {
             </div>
           </div>
         </div>
-        <div class="relative flex-1 hidden w-0 overflow-hidden lg:block">
+        <div className="relative flex-1 hidden w-0 overflow-hidden lg:block">
           <img
-            class="absolute inset-0 object-cover w-full h-full object-fill"
+            className="absolute inset-0 object-cover w-full h-full object-fill"
             src={image}
             alt="Sign Up"
           />
@@ -289,4 +295,3 @@ export default SignUpP;
 // }
 
 // export default Index;
-

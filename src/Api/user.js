@@ -45,7 +45,7 @@ const SingIn = ( email, password ) => {
             alert(e)
 
             // window.location.href='/';
-        }).finally()
+        }).finally(e=>window.location.href='/')
 
 }
 

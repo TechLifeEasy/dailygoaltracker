@@ -36,29 +36,29 @@ const Task = () => {
 
   return (
     <section>
-      <div class="flex items-center w-full justify-center overflow-hidden my-4">
+      <div className="flex items-center w-full justify-center overflow-hidden my-4">
         <div
-          class="
+          className="
             flex flex-col
             justify-center
             flex-1
             
           ">
-          <div class="w-full max-w-xl mx-auto lg:w-96">
+          <div className="w-full max-w-xl mx-auto lg:w-96">
             <div>
-              <h2 class="mt-6 text-3xl font-extrabold text-neutral-600">
+              <h2 className="mt-6 text-3xl font-extrabold text-neutral-600">
                 Tells About Challenge
               </h2>
             </div>
-            <div class="mt-8 flex flex-col gap-7">
-              <div class="mt-6 flex flex-col gap-10">
+            <div className="mt-8 flex flex-col gap-7">
+              <div className="mt-6 flex flex-col gap-10">
                 <div className="flex  flex-col gap-3">
                   <label
                     for="email"
-                    class="block text-xl font-medium text-neutral-600">
+                    className="block text-xl font-medium text-neutral-600">
                     Task Title
                   </label>
-                  <div class="mt-1">
+                  <div className="mt-1">
                     <input
                       id="email"
                       name="title"
@@ -68,7 +68,7 @@ const Task = () => {
                       placeholder="100daysofcode .."
                       onChange={handleChange}
                       value={data.title}
-                      class="
+                      className="
                           block
                           w-full
                           px-5
@@ -97,10 +97,10 @@ const Task = () => {
                 <div className="flex  flex-col gap-3">
                   <label
                     for="email"
-                    class="block text-xl font-medium text-neutral-600">
+                    className="block text-xl font-medium text-neutral-600">
                     Task Days Count
                   </label>
-                  <div class="mt-1">
+                  <div className="mt-1">
                     <input
                       id="email"
                       name="dayscount"
@@ -110,7 +110,7 @@ const Task = () => {
                       placeholder="100daysofcode .."
                       onChange={handleChange}
                       value={data.dayscount}
-                      class="
+                      className="
                           block
                           w-full
                           px-5
@@ -139,10 +139,10 @@ const Task = () => {
                 <div className="flex  flex-col gap-3">
                   <label
                     for="email"
-                    class="block text-xl font-medium text-neutral-600">
+                    className="block text-xl font-medium text-neutral-600">
                     Task Start Date
                   </label>
-                  <div class="mt-1">
+                  <div className="mt-1">
                     <input
                       id="email"
                       name="startdate"
@@ -152,7 +152,7 @@ const Task = () => {
                       placeholder="100daysofcode .."
                       onChange={handleChange}
                       value={data.startdate}
-                      class="
+                      className="
                           block
                           w-full
                           px-5
@@ -180,7 +180,7 @@ const Task = () => {
 
                 <button
                   type="submit"
-                  class="
+                  className="
                         flex
                         items-center
                         justify-center

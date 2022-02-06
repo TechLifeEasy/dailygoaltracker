@@ -41,6 +41,8 @@ export default function Days({data}) {
     index: -1,
   });
 
+  let tem=false;
+
   function setDays() {
     let newDays = [];
 
@@ -49,16 +51,46 @@ export default function Days({data}) {
     let lastDate = new Date(data.startdate);
 
     for (let i = 0; i < data.days.length; ) {
+
+
       let current = new Date(data.days[i].finishdate );
+      if(data.days[i].finishdate.length==0){
+        console.log('me')
+
+        if(i===data.days.length-1){
+          tem={
+            isdone: data.days[i].isdone,
+            tasks: data.days[i].tasks,
+            type: 'today',
+            date: lastDate,
+            title:  data.days[i].title
+          };
+      
+        }else{
+
+          newDays.push({
+            isdone: false,
+            taks: [],
+            type: "miss",
+            date: lastDate,
+          });
+
+        }
+        i++;
+        continue;
+      }
+
+
+
       let diff = current - lastDate;
       let day = Math.floor(diff / (1000 * 60 * 60 * 24));
 
       //   console.log("call");
 
-      console.log(current);
-      console.log(lastDate);
-      //   console.log(diff)
-      console.log(day);
+      // console.log(current);
+      // console.log(lastDate);
+      // //   console.log(diff)
+      // console.log(day);
 
       //   if(p>10){
       //       break;
@@ -75,6 +107,7 @@ export default function Days({data}) {
           tasks: data.days[i].tasks,
           type:  data.days[i].isdone?(islast?'today' :"done"):'miss',
           date: lastDate,
+          title: data.days[i].title
         });
         i++;
       } else {
@@ -85,7 +118,7 @@ export default function Days({data}) {
           date: lastDate,
         });
       }
-      p++;
+      // p++;
 
       let l = +lastDate.getTime() + 24 * 60 * 60 * 1000;
 
@@ -116,12 +149,18 @@ export default function Days({data}) {
       }else if(day===0){
  
         console.log('call')
-        newDays.push({
-          isdone: false,
-          tasks: [],
-          type: "today",
-          date: lastDate,
-        });
+
+        if(!tem){
+
+          newDays.push({
+            isdone: false,
+            tasks: [],
+            type: "today",
+            date: lastDate,
+          });
+        }else{
+          newDays.push(tem);
+        }
         break;
       }else{
         newDays.push({

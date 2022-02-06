@@ -191,11 +191,11 @@ const SignUp = () => {
                       </a>
                     </div>
                   </div> */}
-                  <div className="flex items-center justify-end my-3">
-                  <Link to='/signup'>
+                  {/* <div className="flex items-center justify-end my-3"> */}
+                  {/* {/* <Link to='/signup'>
                     Sign Up Hear
-                  </Link>
-                </div>
+                  </Link> */}
+                {/* </div> */} 
                   <div>
                     <button
                       type="submit"
@@ -230,6 +230,14 @@ const SignUp = () => {
                       }
                     </button>
                   </div>
+                  <div className="flex items-center justify-center my-4">
+                  <Link
+                    to="/signup"
+                    class="font-medium text-blue-600 hover:text-blue-500"
+                  >
+                      Sign Up Hear
+                  </Link>
+                </div>
                
                 {/* <div class="relative my-4">
                   <div class="absolute inset-0 flex items-center">
